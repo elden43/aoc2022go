@@ -1,0 +1,14 @@
+package main
+
+import (
+	"fmt"
+	"github.com/elden43/aoc2022/solutions"
+)
+
+func main() {
+	fmt.Println("Advent GO Code 2022")
+	fmt.Println("-------------------")
+	fmt.Println("Day1")
+	solutions.Day1part1()
+	solutions.Day1part2()
+}
