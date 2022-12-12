@@ -3,6 +3,7 @@ package reader
 import (
 	"bufio"
 	"os"
+	"strings"
 )
 
 func ReadLines(filePath string) []string {
@@ -19,4 +20,9 @@ func ReadLines(filePath string) []string {
 	}
 
 	return result
+}
+
+func GetInputSeparatedBy(file, separator string) []string {
+	bytes, _ := os.ReadFile(file)
+	return strings.Split(string(bytes), separator)
 }
