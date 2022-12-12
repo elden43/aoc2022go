@@ -14,6 +14,19 @@ type mapField struct {
 	tVisited bool
 }
 
+func (mp mapField) isEmpty() bool {
+	if mp.head || mp.tVisited {
+		return false
+	}
+	for _, v := range mp.tails {
+		if v == true {
+			return false
+		}
+	}
+
+	return true
+}
+
 func newField(head bool, tVisited bool, tailsCount int) *mapField {
 	tails := make(map[int]bool)
 	for i := 1; i <= tailsCount; i++ {
@@ -83,6 +96,9 @@ func moveKnots(direction string, count, tailsCount int, fields map[int]map[int]*
 	curHX, curHY := curHPos(fields)
 	for i := 0; i < count; i++ {
 		fields[curHX][curHY].head = false
+		if fields[curHX][curHY].isEmpty() {
+			delete(fields[curHX], curHY)
+		}
 		switch direction {
 		case "R":
 			curHX++
@@ -115,6 +131,9 @@ func moveTail(curTail, tailCount int, fields map[int]map[int]*mapField) {
 		return
 	}
 	fields[curTX][curTY].tails[curTail] = false
+	if fields[curTX][curTY].isEmpty() {
+		delete(fields[curTX], curTY)
+	}
 	if curHX == curTX || curHY == curTY {
 		if curHX == curTX {
 			curTY = (curHY + curTY) / 2
