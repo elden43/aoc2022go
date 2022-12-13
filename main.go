@@ -38,4 +38,7 @@ func main() {
 	fmt.Println("Day10")
 	solutions.Day10part1()
 	solutions.Day10part2()
+	fmt.Println("Day11")
+	solutions.Day11part1()
+	solutions.Day11part2()
 }
