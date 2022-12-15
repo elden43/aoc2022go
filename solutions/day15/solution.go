@@ -33,8 +33,10 @@ func Part2() {
 	areaCoord2 := utils.Coord{X: 4000000, Y: 4000000}
 	inputPairs = processInput()
 
+	i := 0
 	for y:= areaCoord1.Y; y <= areaCoord2.Y; y++ {
 		for x:= areaCoord1.X; x <= areaCoord2.X; {
+			i++
 			xChanged := false
 			for _, pair := range inputPairs {
 				if pair.md >= manhattanDist4Coords(utils.Coord{X: x, Y: y}, pair.sensor) {
@@ -42,12 +44,10 @@ func Part2() {
 					xChanged = true
 				}
 			}
-
 			if !xChanged {
-				println(x * 4000000 + y)
+				println(x * 4000000 + y, i)
 				return
 			}
-
 		}
 	}
 }
@@ -64,17 +64,16 @@ func countCharsOnYPos(yPos int, char rune, f *utils.Field2DRune) int {
 }
 
 func drawNaughtyPicture(sbp sensorBeaconPair, f *utils.Field2DRune, minLine, maxLine int) {
-	//manhattan distance
 	//if your speed is 1 manhattan distance per day, md also means "mandays needed to get from start to destination"
 	md := manhattanDist4Pair(sbp)
 
-	//if picture wouldn't cross our result line, skip drawing
+	//if picture wouldn't cross our result range, skip drawing
 	if maxLine < sbp.sensor.Y-md || minLine > sbp.sensor.Y+md {
 		return
 	}
 
 	//draw only in defined range -- yeah, this was line until I started
-	//optimize it for part 2 ant before I realized it will not be possible
+	//optimize it for part 2, and before I realized it will not be possible
 	minY := sbp.sensor.Y - md
 	maxY := sbp.sensor.Y + md
 	for y := minY; y <= maxY; y++ {
