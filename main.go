@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/elden43/aoc2022/solutions/day14"
+	"github.com/elden43/aoc2022/solutions/day15"
 )
 
 func main() {
@@ -46,6 +46,8 @@ func main() {
 	//solutions.Day13part2()
 	//solutions.Helpme()
 	//day14.Part1()
-	day14.Part2()
+	//day14.Part2()
+	day15.Part1()
+	day15.Part2()
 
 }
